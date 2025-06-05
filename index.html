@@ -187,7 +187,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo-left">
-            <img src="logogeneral.jpg" alt="Logo Izquierdo" class="logo-izquierdo" />
+            <img src="imajenes/logogeneral.jpg" alt="Logo Izquierdo" class="logo-izquierdo" />
         </div>
         <nav>
             <ul>
@@ -211,7 +211,7 @@
             </ul>
         </nav>
         <div class="logo-right">
-            <img src="logogeneral.jpg" alt="Logo Derecho" class="logo-derecho" />
+            <img src="imajenes/logogeneral.jpg" alt="Logo Derecho" class="logo-derecho" />
         </div>
     </header>
 
@@ -221,11 +221,11 @@
             <button class="carousel-btn" id="prevBtn">&#10094;</button>
             <div class="image-text-container">
                 <div class="image">
-                    <img id="carousel-image-1" src="ford100.jpg" alt="Ford F-100" />
-                    <img id="carousel-image-2" src="logogeneral.jpg" alt="Leyendas Clásicas" />
-                    <img id="carousel-image-3" src="cadilac.jpg" alt="Cadillac 1955" />
-                    <img id="carousel-image-4" src="Porsche.jpg" alt="Porsche 911 1969" />
-                    <img id="carousel-image-5" src="beetle.jpg" alt="Volkswagen Beetle" />
+                    <img id="carousel-image-1" src="imajenes/ford100.jpg" alt="Ford F-100" />
+                    <img id="carousel-image-2" src="imajenes/logogeneral.jpg" alt="Leyendas Clásicas" />
+                    <img id="carousel-image-3" src="imajenes/cadilac.jpg" alt="Cadillac 1955" />
+                    <img id="carousel-image-4" src="imajenes/Porsche.jpg" alt="Porsche 911 1969" />
+                    <img id="carousel-image-5" src="imajenes/beetle.jpg" alt="Volkswagen Beetle" />
                 </div>
                 <div class="text">
                     <h3 id="carousel-title">INICIO</h3>
@@ -252,7 +252,7 @@
         <section>
                 <div class="image-text-container">
                 <div class="image">
-                    <img id="carousel-image-1" src="ford100.jpg" alt="Ford F-100" />
+                    <img id="carousel-image-1" src="imajenes/ford100.jpg" alt="Ford F-100" />
             <div class="box">
            
                <h3>Misión</h3>
@@ -338,15 +338,26 @@
     <div id="contacto" class="seccion container">
         <section>
             <h2>Contacto</h2>
-            <form>
-                <label for="nombre">Nombre:</label><br />
-                <input type="text" id="nombre" name="nombre" /><br /><br />
-                <label for="email">Email:</label><br />
-                <input type="email" id="email" name="email" /><br /><br />
-                <label for="mensaje">Mensaje:</label><br />
-                <textarea id="mensaje" name="mensaje"></textarea><br /><br />
-                <button type="submit">Enviar</button>
-            </form>
+
+             <form action="https://formsubmit.co/car473ss57@gmail.com" method="POST">
+  <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+  <input type="hidden" name="_captcha" value="false">
+
+  <label for="nombre">Nombre:</label><br />
+  <input type="text" id="nombre" name="Nombre" required /><br /><br />
+
+  <label for="email">Correo electrónico:</label><br />
+  <input type="email" id="email" name="Email" required /><br /><br />
+
+  <label for="telefono">Teléfono:</label><br />
+  <input type="tel" id="telefono" name="Teléfono" required /><br /><br />
+
+  <label for="evento">Evento al que deseas asistir:</label><br />
+  <input type="text" id="evento" name="Evento" required /><br /><br />
+
+  <button type="submit">Guardar</button>
+</form>
+
         </section>
     </div>
 <div id="registrate" class="seccion container">
@@ -369,6 +380,11 @@
     </form>
   </section>
 </div>
+
+
+
+
+
 
     <!-- FOOTER -->
     <footer>
