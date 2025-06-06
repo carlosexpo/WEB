@@ -1,63 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contáctanos - Libro Azul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Alehouse</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
+    <h1>Contacto</h1>
+    <p class="eslogan">¡Tu nuevo hogar te espera con Alehouse!</p>
     <nav>
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="conocenos.html">Conócenos</a></li>
-        <li><a href="servicios.html">Servicios</a></li>
-        <li><a href="registrate.html">Regístrate</a></li>
-        <li class="dropdown">
-          <a href="#">Exhibiciones</a>
-          <div class="dropdown-content">
-            <a href="#">Nuevas exhibiciones</a>
-          </div>
-        </li>
-        <li><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="index1.html">Inicio</a></li>
+        <li><a href="venta.html">En Venta</a></li>
+        <li><a href="renta.html">En Renta</a></li>
+        <li><a href="vacacionales.html">Vacacionales</a></li>
+        <li><a href="cita.html">Agendar Cita</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="container">
-    <section>
-      <h2>Formulario de Contacto</h2>
-      <form action="https://formsubmit.co/car473ss57@gmail.com" method="POST">
-        <input type="hidden" name="_next" value="index.html">
-        <input type="hidden" name="_captcha" value="false">
+  <main>
+    <form 
+      class="contacto" 
+      action="https://formsubmit.co/runsaxzg@gmail.com" 
+      method="POST" 
+      novalidate 
+      id="contacto-form"
+    >
+      <h2>Contacto</h2>
 
-        <label for="nombre">Nombre:</label><br />
-        <input type="text" id="nombre" name="Nombre" required /><br /><br />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="" />
 
-        <label for="email">Correo electrónico:</label><br />
-        <input type="email" id="email" name="Email" required /><br /><br />
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo" />
 
-        <label for="telefono">Teléfono:</label><br />
-        <input type="tel" id="telefono" name="Teléfono" required /><br /><br />
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" />
 
-        <label for="evento">Evento al que deseas asistir:</label><br />
-        <input type="text" id="evento" name="Evento" required /><br /><br />
+      <label for="asunto">Asunto:</label>
+      <input type="text" id="asunto" name="asunto" required placeholder="Asunto del mensaje" />
 
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe tu mensaje aquí"></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    <p id="mensaje-exito" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
+      ¡Mensaje enviado correctamente!
+    </p>
   </main>
-  <!-- ... tu contenido HTML ... -->
 
-<footer>
-  <p>&copy; 2025 Libro Azul</p>
-</footer>
+  <footer>
+    <p>&copy; 2025 Alehouse. Todos los derechos reservados.</p>
+  </footer>
 
+  <script>
+    const form = document.getElementById('contacto-form');
+    const mensajeExito = document.getElementById('mensaje-exito');
 
-</body>
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Evita la recarga de página
 
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          mensajeExito.style.display = 'block';
+          form.reset();
+        } else {
+          alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
+        }
+      })
+      .catch(() => {
+        alert('Error de red. Intenta más tarde.');
+      });
+    });
+  </script>
 </body>
 </html>

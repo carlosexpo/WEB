@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pago - Alehouse</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Formulario de Pago</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-pago">
+      <h2 id="propiedadNombre"></h2>
+
+      <label for="nombre">Tu Nombre Completo:</label><br />
+      <input type="text" id="nombre" placeholder="Nombre completo" /><br /><br />
+
+      <label for="formaPago">Forma de Pago:</label><br />
+      <select id="formaPago" onchange="mostrarCamposPago()">
+        <option value="">Selecciona forma de pago</option>
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tarjeta">Tarjeta</option>
+      </select>
+
+      <div id="datosTarjeta" style="display:none; margin-top: 20px;">
+        <label for="tarjetaNombre">Nombre en la Tarjeta:</label><br />
+        <input type="text" id="tarjetaNombre" placeholder="Nombre en tarjeta" /><br /><br />
+
+        <label for="numeroTarjeta">Número de Tarjeta:</label><br />
+        <input type="text" id="numeroTarjeta" placeholder="1234567812345678" maxlength="16" inputmode="numeric" /><br /><br />
+
+        <label for="exp">Fecha de expiración:</label><br /> 
+        <input type="month" id="exp" name="exp" required><br /><br />
+
+        <label for="cvv">CVV:</label><br />
+        <input type="password" id="cvv" placeholder="123" maxlength="3" inputmode="numeric" /><br /><br />
+      </div>
+
+      <button onclick="procesarPago()">Pagar</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Carloshouse. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

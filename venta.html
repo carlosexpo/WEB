@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propiedades en Venta - Alehouse</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Casas en Venta</h1>
+    <nav>
+      <ul>
+        <li><a href="index1.html">Inicio</a></li>
+        <li><a href="venta.html">En Venta</a></li>
+        <li><a href="renta.html">En Renta</a></li>
+        <li><a href="vacacionales.html">Vacacionales</a></li>
+        <li><a href="cita.html">Agendar Cita</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Tu nuevo hogar te espera</h2>
+    <p>Explora nuestras casas en venta y encuentra la ideal para ti.</p>
+
+    <section class="propiedades">
+     <!-- Propiedad 1 -->
+<div class="propiedad">
+  <img src="img1.jpg" alt="Casa 1" />
+  <h3>Casa 1</h3>
+  <p>$200,000</p>
+  <p>Casa moderna de una planta con jardín amplio y acabados de lujo.</p>
+  <p><strong>Ubicación:</strong> Mérida, Yucatán</p>
+  <button onclick="irPago('Casa 1 - $200,000')">Comprar</button>
+</div>
+
+<!-- Propiedad 2 -->
+<div class="propiedad">
+  <img src="img2.jpg" alt="Casa 2" />
+  <h3>Casa 2</h3>
+  <p>$250,000</p>
+  <p>Residencia con 3 recámaras, cocina equipada y cochera para 2 autos.</p>
+  <p><strong>Ubicación:</strong> Querétaro, Querétaro</p>
+  <button onclick="irPago('Casa 2 - $250,000')">Comprar</button>
+</div>
+
+<!-- Propiedad 3 -->
+<div class="propiedad">
+  <img src="img3.jpg" alt="Casa 3" />
+  <h3>Casa 3</h3>
+  <p>$300,000</p>
+  <p>Casa en fraccionamiento privado con alberca, seguridad 24/7 y parque.</p>
+  <p><strong>Ubicación:</strong> Puebla, Puebla</p>
+  <button onclick="irPago('Casa 3 - $300,000')">Comprar</button>
+</div>
+
+<!-- Propiedad 4 -->
+<div class="propiedad">
+  <img src="img4.jpg" alt="Casa 4" />
+  <h3>Casa 4</h3>
+  <p>$280,000</p>
+  <p>Bonita casa de dos pisos con terraza, cuarto de servicio y jardín trasero.</p>
+  <p><strong>Ubicación:</strong> León, Guanajuato</p>
+  <button onclick="irPago('Casa 4 - $280,000')">Comprar</button>
+</div>
+
+<!-- Propiedad 5 -->
+<div class="propiedad">
+  <img src="img5.jpg" alt="Casa 5" />
+  <h3>Casa 5</h3>
+  <p>$320,000</p>
+  <p>Residencia estilo minimalista con paneles solares y cocina integral.</p>
+  <p><strong>Ubicación:</strong> Zapopan, Jalisco</p>
+  <button onclick="irPago('Casa 5 - $320,000')">Comprar</button>
+</div>
+
+<!-- Propiedad 6 -->
+<div class="propiedad">
+  <img src="img7.jpg" alt="Casa 6" />
+  <h3>Casa 6</h3>
+  <p>$400,000</p>
+  <p>Casa premium con vista panorámica, alberca privada y acabados italianos.</p>
+  <p><strong>Ubicación:</strong> San Pedro Garza García, Nuevo León</p>
+  <button onclick="irPago('Casa 6 - $400,000')">Comprar</button>
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Carloshouse. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irPago(propiedad) {
+      localStorage.setItem('propiedadSeleccionada', propiedad);
+      window.location.href = 'pago.html';
+    }
+  </script>
+</body>
+</html>

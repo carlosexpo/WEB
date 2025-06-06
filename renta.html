@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propiedades en Renta - Alehouse</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Propiedades en Renta</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="venta.html">En Venta</a></li>
+        <li><a href="renta.html">En Renta</a></li>
+        <li><a href="vacacionales.html">Vacacionales</a></li>
+        <li><a href="cita.html">Agendar Cita</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Casas y departamentos disponibles para renta mensual</h2>
+    <section class="propiedades">
+    <!-- Propiedad 1 -->
+<div class="propiedad">
+  <img src="departamento1.jpg" alt="Departamento 1" />
+  <h3>Departamento 1</h3>
+  <p>$800/mes</p>
+  <p>Moderno departamento con balcón, cocina equipada y excelente iluminación natural.</p>
+  <p><strong>Ubicación:</strong> Colonia Roma, Ciudad de México</p>
+  <button onclick="irPago('Departamento 1 - $800/mes')">Rentar</button>
+</div>
+
+<!-- Propiedad 2 -->
+<div class="propiedad">
+  <img src="departamento2.jpg" alt="Departamento 2" />
+  <h3>Departamento 2</h3>
+  <p>$850/mes</p>
+  <p>Departamento céntrico con dos recámaras, ideal para estudiantes o profesionistas.</p>
+  <p><strong>Ubicación:</strong> Monterrey Centro, Nuevo León</p>
+  <button onclick="irPago('Departamento 2 - $850/mes')">Rentar</button>
+</div>
+
+<!-- Propiedad 3 -->
+<div class="propiedad">
+  <img src="img6.jpg" alt="Casa 3" />
+  <h3>Casa 3</h3>
+  <p>$950/mes</p>
+  <p>Casa familiar de dos plantas con patio, ideal para familias pequeñas.</p>
+  <p><strong>Ubicación:</strong> Tlajomulco, Jalisco</p>
+  <button onclick="irPago('Casa 3 - $950/mes')">Rentar</button>
+</div>
+
+<!-- Propiedad 4 -->
+<div class="propiedad">
+  <img src="ciudad.jpg" alt="Casa 4" />
+  <h3>Casa 4</h3>
+  <p>$1000/mes</p>
+  <p>Casa urbana con excelente conectividad y cerca de plazas comerciales.</p>
+  <p><strong>Ubicación:</strong> Toluca, Estado de México</p>
+  <button onclick="irPago('Casa 4 - $1000/mes')">Rentar</button>
+</div>
+
+<!-- Propiedad 5 -->
+<div class="propiedad">
+  <img src="pengaus.jpg" alt="Pengaus" />
+  <h3>Pengaus</h3>
+  <p>$12000/mes</p>
+  <p>Residencia de lujo con amplios espacios, acabados de alta gama y alberca privada.</p>
+  <p><strong>Ubicación:</strong> Bosques de las Lomas, CDMX</p>
+  <button onclick="irPago('Casa 5 - $12000/mes')">Rentar</button>
+</div>
+
+<!-- Propiedad 6 -->
+<div class="propiedad">
+  <img src="cabaña.jpg" alt="Cabaña" />
+  <h3>Cabaña</h3>
+  <p>$1000/mes</p>
+  <p>Acogedora cabaña en zona boscosa, perfecta para escapar del bullicio urbano.</p>
+  <p><strong>Ubicación:</strong> Valle de Bravo, Estado de México</p>
+  <button onclick="irPago('Cabaña - $1000/mes')">Rentar</button>
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Carloshouse. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irPago(propiedad) {
+      localStorage.setItem('propiedadSeleccionada', propiedad);
+      window.location.href = 'pago.html';
+    }
+  </script>
+</body>
+</html>

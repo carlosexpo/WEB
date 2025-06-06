@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Propiedades Vacacionales - Alehouse</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Propiedades Vacacionales</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="venta.html">En Venta</a></li>
+        <li><a href="renta.html">En Renta</a></li>
+        <li><a href="vacacionales.html">Vacacionales</a></li>
+        <li><a href="cita.html">Agendar Cita</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Escápate a un lugar único</h2>
+    <p>Elige entre nuestras exclusivas propiedades vacacionales para relajarte y disfrutar.</p>
+
+    <section class="propiedades">
+    
+      <div class="propiedad">
+  <img src="casaplaya1.jpg" alt="Casa Playa 1" />
+  <h3>Casa Playa 1</h3>
+  <p>$100/noche</p>
+  <p>Acogedora casa frente al mar, perfecta para disfrutar atardeceres tropicales.</p>
+  <p><strong>Ubicación:</strong> Cancún, Quintana Roo</p>
+  <button onclick="irPago('Casa Playa 1 - $100/noche')">Rentar</button>
+</div>
+
+<div class="propiedad">
+  <img src="casaplaya2.jpg" alt="Casa Playa 2" />
+  <h3>Casa Playa 2</h3>
+  <p>$110/noche</p>
+  <p>Amplia y moderna, con terraza privada y acceso directo a la playa.</p>
+  <p><strong>Ubicación:</strong> Playa del Carmen, Quintana Roo</p>
+  <button onclick="irPago('Casa Playa 2 - $110/noche')">Rentar</button>
+</div>
+
+<div class="propiedad">
+  <img src="casacampo1.jpg" alt="Casa Campo 3" />
+  <h3>Casa Campo 3</h3>
+  <p>$90/noche</p>
+  <p>Ubicada en el campo, rodeada de naturaleza y aire puro, ideal para desconectarse.</p>
+  <p><strong>Ubicación:</strong> Valle de Bravo, Estado de México</p>
+  <button onclick="irPago('Casa Campo 3 - $90/noche')">Rentar</button>
+</div>
+
+<div class="propiedad">
+  <img src="lago1.jpg" alt="Casa Lago 4" />
+  <h3>Casa Lago 4</h3>
+  <p>$120/noche</p>
+  <p>Encantadora cabaña junto al lago, con muelle y actividades acuáticas.</p>
+  <p><strong>Ubicación:</strong> Lago de Chapala, Jalisco</p>
+  <button onclick="irPago('Casa Lago 4 - $120/noche')">Rentar</button>
+</div>
+
+<div class="propiedad">
+  <img src="montaña.jpg" alt="Casa Montaña 5" />
+  <h3>Casa Montaña 5</h3>
+  <p>$130/noche</p>
+  <p>Refugio en la montaña con chimenea, vistas increíbles y senderos cercanos.</p>
+  <p><strong>Ubicación:</strong> Real del Monte, Hidalgo</p>
+  <button onclick="irPago('Casa Montaña 5 - $130/noche')">Rentar</button>
+</div>
+
+<div class="propiedad">
+  <img src="villa.jpg" alt="Villa 6" />
+  <h3>Villa 6</h3>
+  <p>$150/noche</p>
+  <p>Villa de lujo con alberca privada, jardín tropical y todas las comodidades.</p>
+  <p><strong>Ubicación:</strong> Tulum, Quintana Roo</p>
+  <button onclick="irPago('Villa 6 - $150/noche')">Rentar</button>
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Carloshouse. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function irPago(propiedad) {
+      localStorage.setItem('propiedadSeleccionada', propiedad);
+      window.location.href = 'pago.html';
+    }
+  </script>
+</body>
+</html>

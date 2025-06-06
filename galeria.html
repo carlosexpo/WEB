@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería - Alehouse</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Estilos específicos para galería y carrusel */
+
+    header {
+      text-align: center;
+      padding: 20px 10px;
+      background-color: #003366; /* azul oscuro */
+      color: white;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .eslogan {
+      font-style: italic;
+      color: #4fc3f7; /* azul claro */
+      font-weight: 600;
+      margin-top: 5px;
+      font-size: 1.25rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 15px 0 0;
+      padding-left: 0;
+    }
+
+    nav ul li {
+      margin: 0 5px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 6px;
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #4fc3f7; /* azul claro */
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto 60px;
+      padding: 0 15px;
+      text-align: center;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: #2196f3; /* azul medio */
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    /* Carrusel */
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+      background: white;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-track img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin: 0 10px;
+      user-select: none;
+    }
+
+    /* Botones del carrusel */
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(79, 195, 247, 0.8); /* azul claro con opacidad */
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      z-index: 10;
+    }
+
+    .carousel-button:hover {
+      background-color: #1976d2; /* azul más oscuro */
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      .carousel-track img {
+        max-width: 90vw;
+        margin: 0 5px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galería de Propiedades</h1>
+    <p class="eslogan">Encuentra la casa de tus sueños con Alehouse</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="venta.html">En Venta</a></li>
+        <li><a href="renta.html">En Renta</a></li>
+        <li><a href="vacacionales.html">Vacacionales</a></li>
+        <li><a href="cita.html">Agendar Cita</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <p class="intro-text">
+      Descubre nuestras mejores propiedades seleccionadas especialmente para ti. Navega entre imágenes y encuentra inspiración para tu nuevo hogar.
+    </p>
+
+    <div class="carousel-container" aria-label="Galería de propiedades">
+      <button class="carousel-button prev" aria-label="Imagen anterior">&#10094;</button>
+      <div class="carousel-track">
+        <img src="img1.jpg" alt="Propiedad 1" />
+        <img src="img2.jpg" alt="Propiedad 2" />
+        <img src="img3.jpg" alt="Propiedad 3" />
+        <img src="img5.jpg" alt="Propiedad 4" />
+        <img src="img6.jpg" alt="Propiedad 5" />
+        <img src="img7.jpg" alt="Propiedad 6" />
+      </div>
+      <button class="carousel-button next" aria-label="Imagen siguiente">&#10095;</button>
+    </div>
+  </main>
+
+  <script>
+    // JavaScript básico para carrusel
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const slideWidth = slides[0].getBoundingClientRect().width + 20;
+
+    let currentIndex = 0;
+
+    function moveToSlide(index) {
+      if(index < 0) index = slides.length - 3;
+      if(index > slides.length - 3) index = 0;
+      currentIndex = index;
+      track.style.transform = 'translateX(' + (-slideWidth * index) + 'px)';
+    }
+
+    prevButton.addEventListener('click', () => {
+      moveToSlide(currentIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+      moveToSlide(currentIndex + 1);
+    });
+
+    moveToSlide(0);
+  </script>
+
+  <footer style="text-align:center; padding: 20px; background-color: #003366; color: white;">
+    <p>&copy; 2025 Carloshouse. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>

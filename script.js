@@ -1,108 +1,74 @@
-// 🔹 Carrusel principal de autos
-
-const slides = [
-  {
-    imgId: 'carousel-image',
-    title: 'Ford Mustang 1967',
-    description: 'Un ícono americano que representa el poder y la elegancia del diseño clásico.'
-  },
-  {
-    imgId: 'carousel-image-2',
-    title: 'Chevrolet Bel Air 1957',
-    description: 'Un símbolo de la era dorada del automovilismo estadounidense.'
-  }
-];
-
-let currentIndex = 0;
-
-// 🔹 Elementos HTML del carrusel principal
-const title = document.getElementById("carousel-title");
-const description = document.getElementById("carousel-description");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-// 🔹 Función para actualizar el carrusel principal
-function updateCarousel() {
-  slides.forEach(slide => {
-    document.getElementById(slide.imgId).classList.remove('active');
-  });
-
-  const current = slides[currentIndex];
-  document.getElementById(current.imgId).classList.add('active');
-  title.textContent = current.title;
-  description.textContent = current.description;
+function mostrarCamposPago() {
+  const formaPago = document.getElementById('formaPago').value;
+  const datosTarjeta = document.getElementById('datosTarjeta');
+  datosTarjeta.style.display = (formaPago === 'Tarjeta') ? 'block' : 'none';
 }
 
-// 🔹 Eventos para avanzar y retroceder el carrusel principal
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateCarousel();
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const nombrePropiedad = params.get("propiedad") || "Propiedad Seleccionada";
+  document.getElementById("propiedadNombre").textContent = nombrePropiedad;
 
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateCarousel();
-});
-
-updateCarousel(); // Inicializar
-
-// 🔹 Carrusel de exhibiciones
-
-const exhibiciones = [
-  {
-    imgId: 'ex-image-1',
-    title: 'Auto Show Retro',
-    description: 'Una de nuestras exhibiciones más populares con autos clásicos de los 60s y 70s.'
-  },
-  {
-    imgId: 'ex-image-2',
-    title: 'Muscle Cars en Vivo',
-    description: 'Vehículos icónicos estadounidenses rugiendo como en sus mejores tiempos.'
-  },
-  {
-    imgId: 'ex-image-3',
-    title: 'Expo Futuro Clásico',
-    description: 'Prototipos modernos con potencial para convertirse en leyendas.'
-  }
-];
-
-let exIndex = 0;
-
-// 🔹 Elementos HTML del carrusel de exhibiciones
-const exTitle = document.getElementById("ex-title");
-const exDesc = document.getElementById("ex-description");
-const nextExBtn = document.getElementById("nextExBtn");
-const prevExBtn = document.getElementById("prevExBtn");
-
-// 🔹 Función para actualizar el carrusel de exhibiciones
-function updateExCarousel() {
-  exhibiciones.forEach(ex => {
-    document.getElementById(ex.imgId).classList.remove("active");
+  // Validación en tiempo real para el número de tarjeta (solo 16 dígitos)
+  const numTarjeta = document.getElementById("numeroTarjeta");
+  numTarjeta.addEventListener("input", () => {
+    numTarjeta.value = numTarjeta.value.replace(/\D/g, "").slice(0, 16);
   });
 
-  const currentEx = exhibiciones[exIndex];
-  document.getElementById(currentEx.imgId).classList.add("active");
-  exTitle.textContent = currentEx.title;
-  exDesc.textContent = currentEx.description;
+  // Validación en tiempo real para CVV (solo 3 dígitos)
+  const cvv = document.getElementById("cvv");
+  cvv.addEventListener("input", () => {
+    cvv.value = cvv.value.replace(/\D/g, "").slice(0, 3);
+  });
+});
+
+function procesarPago() {
+  const nombre = document.getElementById('nombre').value.trim();
+  const formaPago = document.getElementById('formaPago').value;
+
+  if (nombre === '' || formaPago === '') {
+    alert('Por favor completa tu nombre y selecciona una forma de pago.');
+    return;
+  }
+
+  if (formaPago === 'Tarjeta') {
+    const tarjetaNombre = document.getElementById('tarjetaNombre').value.trim();
+    const numeroTarjeta = document.getElementById('numeroTarjeta').value.trim();
+    const exp = document.getElementById('exp').value;
+    const cvv = document.getElementById('cvv').value.trim();
+
+    if (tarjetaNombre === '' || numeroTarjeta === '' || exp === '' || cvv === '') {
+      alert('Por favor llena todos los campos de la tarjeta.');
+      return;
+    }
+
+    if (!/^\d{16}$/.test(numeroTarjeta)) {
+      alert('El número de tarjeta debe tener exactamente 16 dígitos numéricos.');
+      return;
+    }
+
+    if (!/^\d{3}$/.test(cvv)) {
+      alert('El CVV debe tener exactamente 3 dígitos numéricos.');
+      return;
+    }
+  }
+
+  generarPDF(nombre, formaPago);
 }
 
-// 🔹 Eventos del carrusel de exhibiciones
-nextExBtn.addEventListener("click", () => {
-  exIndex = (exIndex + 1) % exhibiciones.length;
-  updateExCarousel();
-});
+function generarPDF(nombre, formaPago) {
+  const propiedad = document.getElementById('propiedadNombre').textContent;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-prevExBtn.addEventListener("click", () => {
-  exIndex = (exIndex - 1 + exhibiciones.length) % exhibiciones.length;
-  updateExCarousel();
-});
+  doc.setFontSize(18);
+  doc.text("Documento de Escritura", 20, 20);
 
-updateExCarousel(); // Inicializar
+  doc.setFontSize(12);
+  doc.text(`Propiedad: ${propiedad}`, 20, 40);
+  doc.text(`Comprador: ${nombre}`, 20, 50);
+  doc.text(`Forma de Pago: ${formaPago}`, 20, 60);
+  doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, 70);
 
-// 🔹 Función para mostrar secciones dinámicamente
-function mostrarSeccion(id) {
-  document.querySelectorAll('.seccion').forEach(seccion => {
-    seccion.classList.remove('activa');
-  });
-  document.getElementById(id).classList.add('activa');
+  doc.save("escritura_alehouse.pdf");
 }
