@@ -191,3 +191,13 @@ footer {
     color: white;
     margin-top: 2rem;
 }
+
+.image img {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+}
+
+.image img.active {
+  display: block;
+}
