@@ -190,23 +190,18 @@
             <img src="imajenes/logogeneral.jpg" alt="Logo Izquierdo" class="logo-izquierdo" />
         </div>
         <nav>
-            <ul>
-               <nav>
     <ul>
         <li><a href="#" onclick="mostrarSeccion('inicio')">Inicio</a></li>
         <li><a href="#" onclick="mostrarSeccion('conocenos')">Conócenos</a></li>
         <li><a href="#" onclick="mostrarSeccion('servicios')">Servicios</a></li>
-        <li><a href="#" onclick="mostrarSeccion('registrate')">Regístrate</a></li>
-    </ul>
-</nav>
-
+        <li><a href="#" onclick="mostrarSeccion('registrate')">registrate</a></li>
                 <li class="dropdown">
                     <a href="#">Exhibiciones</a>
                     <div class="dropdown-content">
                         <a href="#">Nuevas exhibiciones</a>
                     </div>
                 </li>
-                
+ 
                 <li><a href="#" onclick="mostrarSeccion('contacto')">Contáctanos</a></li>
             </ul>
         </nav>
@@ -227,12 +222,7 @@
                     <img id="carousel-image-4" src="imajenes/Porsche.jpg" alt="Porsche 911 1969" />
                     <img id="carousel-image-5" src="imajenes/beetle.jpg" alt="Volkswagen Beetle" />
                 </div>
-                <div class="text">
-                    <h3 id="carousel-title">INICIO</h3>
-                    <p id="carousel-description">
-                        En Clásico Azul, somos apasionados por la historia, el diseño y el legado automotriz...
-                    </p>
-                </div>
+              
             </div>
             <button class="carousel-btn" id="nextBtn">&#10095;</button>
         </section>
@@ -360,36 +350,6 @@
 
         </section>
     </div>
-<div id="registrate" class="seccion container">
-  <section>
-    <h2>Formulario de Registro</h2>
-    <form id="registroForm">
-      <label for="nombre">Nombre:</label><br />
-      <input type="text" id="nombre" name="nombre" required /><br /><br />
-
-      <label for="email">Correo electrónico:</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-
-      <label for="telefono">Teléfono:</label><br />
-      <input type="tel" id="telefono" name="telefono" required /><br /><br />
-
-      <label for="evento">Evento al que deseas asistir:</label><br />
-      <input type="text" id="evento" name="evento" required /><br /><br />
-
-      <button type="submit">Guardar</button>
-    </form>
-  </section>
-</div>
-
-
-
-
-
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© Exhibiciones clasicias. Todos los derechos reservados.</p>
-    </footer>
 
     <script>
         const slides = [
@@ -462,30 +422,79 @@
             });
             window.scrollTo(0, 0); // Subir al top al cambiar sección
         }
-  document.getElementById("registroForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
 
-    const nombre = document.getElementById("nombre").value;
-    const email = document.getElementById("email").value;
-    const telefono = document.getElementById("telefono").value;
-    const evento = document.getElementById("evento").value;
+    </script>
+ <div id="registrate" class="seccion container">
+        <section>
+
+  <h2>Registro para Expositores</h2>
+  <form id="registroForm">
+    <label for="nombre">Nombre Completo:</label><br />
+    <input type="text" id="nombre" name="nombre" required /><br /><br />
+
+    <label for="correo">Correo Electrónico:</label><br />
+    <input type="email" id="correo" name="correo" required /><br /><br />
+
+    <label for="auto">Marca y Modelo del Auto:</label><br />
+    <input type="text" id="auto" name="auto" required /><br /><br />
+
+    <label for="anio">Año del Auto:</label><br />
+    <input type="number" id="anio" name="anio" required /><br /><br />
+
+    <label for="imagenPerfil">Subir Foto del Auto:</label><br />
+    <input type="file" id="imagenPerfil" accept="image/*" /><br /><br />
+
+    <button type="submit">Generar PDF</button>
+  </form>
+</section>
+
+<script>
+  document.getElementById("registroForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
-    doc.text("Registro a Exhibición de Autos", 20, 20);
-    doc.setFontSize(12);
-    doc.text(`Nombre: ${nombre}`, 20, 40);
-    doc.text(`Correo: ${email}`, 20, 50);
-    doc.text(`Teléfono: ${telefono}`, 20, 60);
-    doc.text(`Evento: ${evento}`, 20, 70);
-    doc.text("Gracias por registrarte. ¡Nos vemos en el evento!", 20, 90);
+    const nombre = document.getElementById("nombre").value;
+    const correo = document.getElementById("correo").value;
+    const auto = document.getElementById("auto").value;
+    const anio = document.getElementById("anio").value;
+    const imagenInput = document.getElementById("imagenPerfil");
 
-    doc.save(`Registro_${nombre.replace(/\s/g, "_")}.pdf`);
+    // Agregar texto al PDF
+    doc.setFontSize(18);
+    doc.text("Registro de Expositor", 14, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Nombre: ${nombre}`, 14, 40);
+    doc.text(`Correo: ${correo}`, 14, 50);
+    doc.text(`Auto: ${auto}`, 14, 60);
+    doc.text(`Año: ${anio}`, 14, 70);
+
+    if (imagenInput.files.length > 0) {
+      const file = imagenInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const imgData = event.target.result;
+
+        // Insertar imagen en PDF
+        // Escalamos la imagen para que no sea demasiado grande (máx 100x100)
+        doc.addImage(imgData, 'JPEG', 14, 80, 100, 100);
+
+        // Abrir el PDF en nueva pestaña
+        window.open(doc.output('bloburl'));
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      // Si no hay imagen, solo mostrar el PDF con texto
+      window.open(doc.output('bloburl'));
+    }
   });
-    </script>
+</script>
+
+
    
 </body>
-
 </html>
